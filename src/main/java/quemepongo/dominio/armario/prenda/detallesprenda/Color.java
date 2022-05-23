@@ -1,4 +1,4 @@
-package quemepongo.dominio.prenda.detallesprenda;
+package quemepongo.dominio.armario.prenda.detallesprenda;
 
 public class Color {
   private String r;
