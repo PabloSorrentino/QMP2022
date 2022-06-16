@@ -1,10 +1,9 @@
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import quemepongo.dominio.apis.APIClima;
 import quemepongo.dominio.apis.AccuWeatherAPI;
-import quemepongo.dominio.armario.Armario;
+import quemepongo.dominio.armario.Guardarropa;
 import quemepongo.dominio.armario.Atuendo;
 import quemepongo.dominio.armario.Recomendador;
 import quemepongo.dominio.armario.prenda.Prenda;
@@ -28,16 +27,16 @@ public class RecomendadorTest {
 
   @Test
   public void seRecomiendaUnAtuendoCon4Prendas(){
-    Armario armario = crearArmarioConTodasLasPrendas();
-    Atuendo atuendo = recomendadorMock.generarAtuendoSegunTemperaturaHoy(armario);
+    Guardarropa guardarropa = crearArmarioConTodasLasPrendas();
+    Atuendo atuendo = recomendadorMock.generarAtuendoSegunTemperaturaHoy(guardarropa);
 
     Assertions.assertTrue(atuendo.getPrendas().size() == 4);
   }
 
   @Test
   public void seRecomiendaUnAtuendoConLos4TiposDePrenda() {
-    Armario armario = crearArmarioConTodasLasPrendas();
-    Atuendo atuendo = recomendadorMock.generarAtuendoSegunTemperaturaHoy(armario);
+    Guardarropa guardarropa = crearArmarioConTodasLasPrendas();
+    Atuendo atuendo = recomendadorMock.generarAtuendoSegunTemperaturaHoy(guardarropa);
     Prenda superior = atuendo.getPrendaDeCategoria(CategoriaPrenda.PARTE_SUPERIOR);
     Prenda inferior = atuendo.getPrendaDeCategoria(CategoriaPrenda.PARTE_INFERIOR);
     Prenda accesorio = atuendo.getPrendaDeCategoria(CategoriaPrenda.ACCESORIO);
@@ -45,21 +44,21 @@ public class RecomendadorTest {
     Assertions.assertTrue(CategoriaPrenda.PARTE_SUPERIOR.getValues().contains(superior.getTipoPrenda()));
   }
 
-  public Armario crearArmarioConTodasLasPrendas() {
-    Armario armario = new Armario();
-    armario.agregarPrenda(crearRemeraAzulMangaCortaVerano());
-    armario.agregarPrenda(crearCamisaRojaLargaOtonio());
-    armario.agregarPrenda(crearCamperaAzulInvierno());
-    armario.agregarPrenda(crearSweaterVerdePrimavera());
-    armario.agregarPrenda(crearPantalonGris());
-    armario.agregarPrenda(crearShort());
-    armario.agregarPrenda(crearZapatilla());
-    armario.agregarPrenda(crearBota());
-    armario.agregarPrenda(crearHojota());
-    armario.agregarPrenda(crearMochilla());
-    armario.agregarPrenda(crearCinturonCuero());
-    armario.agregarPrenda(crearAnteojo());
-    return armario;
+  public Guardarropa crearArmarioConTodasLasPrendas() {
+    Guardarropa guardarropa = new Guardarropa();
+    guardarropa.agregarPrenda(crearRemeraAzulMangaCortaVerano());
+    guardarropa.agregarPrenda(crearCamisaRojaLargaOtonio());
+    guardarropa.agregarPrenda(crearCamperaAzulInvierno());
+    guardarropa.agregarPrenda(crearSweaterVerdePrimavera());
+    guardarropa.agregarPrenda(crearPantalonGris());
+    guardarropa.agregarPrenda(crearShort());
+    guardarropa.agregarPrenda(crearZapatilla());
+    guardarropa.agregarPrenda(crearBota());
+    guardarropa.agregarPrenda(crearHojota());
+    guardarropa.agregarPrenda(crearMochilla());
+    guardarropa.agregarPrenda(crearCinturonCuero());
+    guardarropa.agregarPrenda(crearAnteojo());
+    return guardarropa;
   }
 
   private Prenda crearCinturonCuero() {

@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 public class Recomendador {
 
   private APIClima apiClima;
-  private Armario armario;
+  private Guardarropa guardarropa;
 
   public Recomendador(APIClima apiClima) {
     this.apiClima = apiClima;
@@ -19,8 +19,8 @@ public class Recomendador {
     this.apiClima = apiClima;
   }
 
-  public Atuendo generarAtuendoSegunTemperaturaHoy(Armario armario) {
-    this.armario = armario;
+  public Atuendo generarAtuendoSegunTemperaturaHoy(Guardarropa guardarropa) {
+    this.guardarropa = guardarropa;
     int temperatura = apiClima.obtenerCondicionesClimaticasParaCiudad("Buenos Aires, Argentina");
     Prenda prendaSuperior= this.prendaRecomendada(CategoriaPrenda.PARTE_SUPERIOR, temperatura);
     Prenda prendaInferior = this.prendaRecomendada(CategoriaPrenda.PARTE_INFERIOR, temperatura);
@@ -31,7 +31,7 @@ public class Recomendador {
 
   public Prenda prendaRecomendada(CategoriaPrenda tipoPrenda, int temperatura) {
     Predicate<Prenda> prendaRecomendada = prenda -> prenda.esAptaParaTemperatura(temperatura);
-    return armario
+    return guardarropa
         .getPrendasdeTipo(tipoPrenda)
         .stream()
         .filter(prendaRecomendada)
