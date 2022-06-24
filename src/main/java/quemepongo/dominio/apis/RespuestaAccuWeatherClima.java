@@ -1,15 +1,17 @@
 package quemepongo.dominio.apis;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
-public class RespuestaAccuWeather {
+public class RespuestaAccuWeatherClima {
   private String ciudad;
   private List<Map<String, Object>> respuestaApi;
   private LocalDateTime momentoConsuta;
 
-  public RespuestaAccuWeather(String ciudad, List<Map<String, Object>> respuestaApi, LocalDateTime momentoConsulta) {
+  public RespuestaAccuWeatherClima(String ciudad, List<Map<String, Object>> respuestaApi, LocalDateTime momentoConsulta) {
   this.ciudad = ciudad;
   this.respuestaApi = respuestaApi;
   this.momentoConsuta = momentoConsulta;
@@ -33,6 +35,12 @@ public class RespuestaAccuWeather {
 
   public String getCiudad() {
     return ciudad;
+  }
+
+  public String getAlerta(){
+    Random r = new Random();
+    int randomitem = r.nextInt(respuestaApi.size());
+    return (String) (Arrays.asList(respuestaApi.get(0).get("CurrentAlerts")).get(randomitem));
   }
 
 }

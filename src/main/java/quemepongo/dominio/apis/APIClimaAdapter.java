@@ -6,4 +6,6 @@ public interface APIClimaAdapter {
 
   public int obtenerTemperaturaEnCentigradosParaCiudad(String ciudad);
 
+  public String obtenerAlertaClimaticaParaCiudad(String ciudad);
+
 }

@@ -21,4 +21,11 @@ public final class AccuWeatherAPI {
       }});
     }});
   }
+
+  public final Map<String, Object> getAlerts(String city) {
+    return new HashMap<String, Object>(){{
+      put("CurrentAlerts",  Arrays.asList("SOLEADO", "CALUROSO", "FRIO", "GRANIZO", "NUBLADO"));
+    }};
+  }
+
 }

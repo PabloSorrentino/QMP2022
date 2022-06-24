@@ -1,5 +1,6 @@
 package quemepongo.dominio.usuario;
 
+import quemepongo.dominio.armario.Atuendo;
 import quemepongo.dominio.armario.Guardarropa;
 import quemepongo.dominio.armario.PropuestaAgregarPrenda;
 import quemepongo.dominio.armario.PropuestaQuitarPrenda;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 public class Usuario {
 
   private final List<Guardarropa> guardarropas = new ArrayList<>();
-
+  private Atuendo atuendoSugerido;
   public void agregarGuardarropa(Guardarropa guardarropa) {
     guardarropas.add(guardarropa);
   }
@@ -41,18 +42,30 @@ public class Usuario {
     otroUsuario.agregarGuardarropa(guardarropa);
   }
 
-  public List<Guardarropa> getGuardarropas() {
+  public List<Guardarropa> getListaGuardarropas() {
     return guardarropas;
   }
 
   public void recomendarAgregarPrenda(Guardarropa guardarropa, Prenda prenda) {
     PropuestaAgregarPrenda reco = new PropuestaAgregarPrenda(guardarropa, prenda);
-    guardarropa.agregarReco(reco);
+    guardarropa.agregarPropuesta(reco);
   }
 
   public void recomendarQuitarPrenda(Guardarropa guardarropa, Prenda prenda) {
     PropuestaQuitarPrenda reco = new PropuestaQuitarPrenda(guardarropa, prenda);
-    guardarropa.agregarReco(reco);
+    guardarropa.agregarPropuesta(reco);
   }
+
+  public void setAtuendoSugerido(Atuendo sugerenciaDiaria) {
+    this.atuendoSugerido = sugerenciaDiaria;
+  }
+
+  public Atuendo getAtuendoSugerido() {
+    if(atuendoSugerido == null) {
+      throw new NoSeGeneroSugerenciaException();
+    }
+    return atuendoSugerido;
+  }
+
 
 }
